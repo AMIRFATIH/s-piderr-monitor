@@ -1,0 +1,28 @@
+name: Telegram Monitor Bot
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # هر ۱۰ دقیقه
+  workflow_dispatch:  # اجرای دستی
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send Check Message
+      run: |
+        TOKEN="8380316014:AAE2J4rsAf0CRz0HETXM_Tu5aa5kN9AIZfs"
+        CHAT_ID="6831429027"
+        TIME=$(date '+%H:%M:%S')
+        
+        curl -X POST \
+          "https://api.telegram.org/bot$TOKEN/sendMessage" \
+          -H "Content-Type: application/json" \
+          -d "{
+            \"chat_id\": \"$CHAT_ID\",
+            \"text\": \"🔄 چک $TIME\\n✅ مانیتور @S_PIDERRBot\",
+            \"parse_mode\": \"HTML\"
+          }"
+        
+        echo "پیام ارسال شد: $TIME"
