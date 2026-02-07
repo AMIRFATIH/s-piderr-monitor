@@ -21,7 +21,7 @@ count = 0
 while True:
     count += 1
     now = datetime.now().strftime("%H:%M:%S")
-    
+
     if count % 6 == 0:
         send(f"⏰ {now}\n✅ مانیتور @{TARGET}")
     
